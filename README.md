@@ -19,7 +19,6 @@ Welcome to the AirBnB clone project! This first phase is dedicated to crafting a
 1. **Install Python 3.8.5:** Ensure the correct Python version is installed.
 2. **Clone the repository:** `git clone https://github.com/AirBnB_clone/AirBnB_clone.git`
 3. **Navigate to the project directory:** `cd AirBnB_clone`
-4. **Install dependencies:** `pip install -r requirements.txt` (if any)
 
 ## Running the Console
 
@@ -39,7 +38,6 @@ Welcome to the AirBnB clone project! This first phase is dedicated to crafting a
 - `tests/`: Comprises unit tests for all model classes
 - `console.py`: The epicenter of the command-line interface
 - `README.md`: Your current reading material
-- `requirements.txt`: Catalog of project dependencies (if any)
 
 ## Authors
 
