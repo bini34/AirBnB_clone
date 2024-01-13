@@ -31,10 +31,11 @@ class FileStorage:
         """file reload"""
         try:
             with open(FileStorage.__file_path, "r") as opened_file:
-                r = opened_file.read()
-                if r:
                     loaded = json.load(opened_file)
                     for key, value in loaded.items():
-                        FileStorage.__objects[key] = value
+                        class_name, obj_id = key.split('.')
+                        instance = self.__cls[class_name](**value)
+                        self.__objects[key] = instance
+
         except FileNotFoundError:
             pass
