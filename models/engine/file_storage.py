@@ -4,13 +4,14 @@
 
 import os
 import json
-
+from models.base_model import BaseModel
 
 class FileStorage:
     """file system for airbnb"""
 
     __file_path = 'file.json'
     __objects = {}
+    __cls = {"BaseModel": BaseModel}
 
     def all(self):
         """returns all objects"""
