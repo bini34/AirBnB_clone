@@ -20,8 +20,8 @@ class BaseModel:
                     continue
                 else:
                     if (key == "created_at" or key == "updated_at"):
-                        (setattr(self, key,
-                         datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")))
+                        val = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                        setattr(self, key, val)
                     else:
                         setattr(self, key, value)
         else:
@@ -31,8 +31,7 @@ class BaseModel:
 
     def __str__(self):
         """string representation"""
-        return ("[{}] ({}) {}"
-                .format(self.__class__.__name__, self.id, self.__dict__))
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def to_dict(self):
         """dictionary representation of the object"""
