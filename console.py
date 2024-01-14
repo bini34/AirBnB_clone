@@ -2,6 +2,7 @@
 """
 Console module for the command interpreter.
 """
+import re
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -27,13 +28,26 @@ class HBNBCommand(cmd.Cmd):
 
     def precmd(self, line):
         """runs befor command is ex"""
-        p = re.compile(r'\.show\((\w{8}-\w{4}-\w{4}-\w{4}-\w{12})\)$')
+        sho = re.compile(r'''
+                \.show\(["\'](\w{8}-\w{4}-\w{4}-\w{4}-\w{12})["\']\)$
+                ''', re.VERBOSE)
+        des = re.compile(r'''
+                \.destroy\(["\'](\w{8}-\w{4}-\w{4}-\w{4}-\w{12})["\']\)$
+                ''', re.VERBOSE)
         if line.endswith(".all()"):
             classn = line.split('.')[0]
             return f'all {classn}'
         if line.endswith(".count()"):
             classn = line.split('.')[0]
             return f'count {classn}'
+        if sho.search(line):
+            classn = line.split('.')[0]
+            uuids = sho.search(line).group(1)
+            return f'show {classn} {uuids}'
+        if des.search(line):
+            classn = line.split('.')[0]
+            uuids = des.search(line).group(1)
+            return f'destroy {classn} {uuids}'
         else:
             return line
 
