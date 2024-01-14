@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-import cmd
 """
 Console module for the command interpreter.
 """
+
+import cmd
 
 
 class HBNBCommand(cmd.Cmd):
