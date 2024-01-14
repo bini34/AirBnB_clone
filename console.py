@@ -81,19 +81,14 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, lines):
         """this method lists all the str represenation"""
         from models import storage
-        list_rep = []
         if lines == "" or not lines:
-            to_print = []
-            alll = storage.all()
-            for obj in alll:
-                to_print.append(str(alll[obj]))
-            print(to_print)
-        elif lines not in self.types:
-            print("** class doesn't exist **")
+            print([str(v) for k, v in storage.all().items()])
         else:
-            (list_rep.extend(str(i) for i in storage.all().values()
-             if type(i).__name__ == lines))
-            print(list_rep)
+            if lines in self.types:
+                (print([str(v) for k, v in storage.all().items()
+                 if type(v).__name__ == lines]))
+            else:
+                print("** class doesn't exist **")
 
     def do_update(self, lines):
         """this method updates instance"""
