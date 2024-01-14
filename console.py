@@ -92,7 +92,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             (list_rep.extend(str(i) for i in storage.all().values()
-             if isinstance(i, globals()[lines])))
+             if type(i).__name__ == lines))
             print(list_rep)
 
     def do_update(self, lines):
