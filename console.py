@@ -6,6 +6,7 @@ Console module for the command interpreter.
 
 
 class HBNBCommand(cmd.Cmd):
+    """command line intepretrer for airbnb"""
     prompt = "(hbnb) "
 
     def do_quit(self, arg):
@@ -14,7 +15,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, line):
         """EOF command to exit the program"""
-        print()
         return True
 
     def emptyline(self):
