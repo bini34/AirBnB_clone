@@ -35,5 +35,25 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exit **")
 
+    def do_show(self, lines):
+        """the string represen tation of an instance"""
+        if lines == "":
+            print("** class name missing **")
+        else:
+            line = lines.split(" ")
+            if line[0] in self.types:
+                if len(line) < 2:
+                    print("** instance id missing **")
+                    return
+                else:
+                    from models import storage
+                    key = f"{line[0]}.{line[1]}"
+                    instance = storage.all()
+                    if key in instance:
+                        print(instance[key])
+            else:
+                print("** class doesn't exist **")
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
