@@ -4,7 +4,7 @@
 from models.base_model import BaseModel
 
 
-class City(BasModel):
+class City(BaseModel):
     """class city blueprint"""
     state_id = ""
     name = ""
