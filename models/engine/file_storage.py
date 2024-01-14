@@ -2,7 +2,7 @@
 """file management"""
 
 
-import os
+from os.path import isfile
 import json
 from models.base_model import BaseModel
 
@@ -31,13 +31,12 @@ class FileStorage:
 
     def reload(self):
         """file reload"""
-        try:
+        if isfile(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r") as opened_file:
                 loaded = json.load(opened_file)
-                for key, value in loaded.items():
+                for key, obj in loaded.items():
                     class_name, obj_id = key.split('.')
-                    instance = self.__cls[class_name](**value)
-                    self.__objects[key] = instance
-
-        except FileNotFoundError:
-            pass
+                    instance = self.__cls[class_name](**obj)
+                    FileStorage.__objects[key] = instance
+        else:
+            return

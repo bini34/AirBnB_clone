@@ -1,11 +1,8 @@
 #!/usr/bin/python3
-"""
-class base model
-"""
-import uuid
-from datetime import datetime
-import models
+""" this is blueprint class base model """
 
+from datetime import datetime
+from uuid import uuid4
 
 class BaseModel:
     """
@@ -25,7 +22,7 @@ class BaseModel:
                 else:
                     setattr(self, key, value)
         else:
-            self.id = str(uuid.uuid4())
+            self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
 
@@ -43,6 +40,7 @@ class BaseModel:
 
     def save(self):
         """save the object"""
+        from models import storage
         self.updated_at = datetime.now()
-        models.storage.new(self)
-        models.storage.save()
+        storage.new(self)
+        storage.save()
