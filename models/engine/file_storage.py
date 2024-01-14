@@ -7,12 +7,13 @@ import json
 from models.base_model import BaseModel
 from models.user import User
 
+
 class FileStorage:
     """file system for airbnb"""
 
     __file_path = 'file.json'
     __objects = {}
-    __cls = {"BaseModel": BaseModel}i
+    __cls = ["BaseModel", "User"]
 
     def all(self):
         """returns all objects"""
@@ -36,7 +37,8 @@ class FileStorage:
                 loaded = json.load(opened_file)
                 for key, obj in loaded.items():
                     class_name, obj_id = key.split('.')
-                    instance = self.__cls[class_name](**obj)
+                    if class_name in FileStorage.__cls:
+                        instance = eval(class_name)(**obj)
                     FileStorage.__objects[key] = instance
         else:
             return
