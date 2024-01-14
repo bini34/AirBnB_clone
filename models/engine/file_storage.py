@@ -5,14 +5,14 @@
 from os.path import isfile
 import json
 from models.base_model import BaseModel
-
+from models.user import User
 
 class FileStorage:
     """file system for airbnb"""
 
     __file_path = 'file.json'
     __objects = {}
-    __cls = {"BaseModel": BaseModel}
+    __cls = {"BaseModel": BaseModel}i
 
     def all(self):
         """returns all objects"""
