@@ -29,10 +29,10 @@ class HBNBCommand(cmd.Cmd):
     def precmd(self, line):
         """runs befor command is ex"""
         sho = re.compile(r'''
-                \.show\(["\'](\w{8}-\w{4}-\w{4}-\w{4}-\w{12})["\']\)$
+                \.show\(["\']([\w-]+)["\']\)$
                 ''', re.VERBOSE)
         des = re.compile(r'''
-                \.destroy\(["\'](\w{8}-\w{4}-\w{4}-\w{4}-\w{12})["\']\)$
+                \.destroy\(["\']([\w-]+)["\']\)$
                 ''', re.VERBOSE)
         if line.endswith(".all()"):
             classn = line.split('.')[0]
