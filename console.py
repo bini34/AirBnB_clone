@@ -92,7 +92,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             for i in storage.all().values():
-                if isinstance(i, globals()[lines]):
+                if isinstance(i, lines.strip("'\\\"")):
                     list_rep.append(str(i))
             print(list_rep)
 
