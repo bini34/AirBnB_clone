@@ -30,6 +30,9 @@ class HBNBCommand(cmd.Cmd):
         if line.endswith(".all()"):
             classn = line.split('.')[0]
             return f'all {classn}'
+        if line.endswith(".count()"):
+            classn = line.split('.')[0]
+            return f'count {classn}'
         else:
             return line
 
@@ -141,6 +144,21 @@ class HBNBCommand(cmd.Cmd):
                     print("** no instance found **")
         else:
             print("** class doesn't exist **")
+
+    def do_count(self, lines):
+        """the number of instance"""
+        from models import storage
+        if lines != "" and not None:
+            if lines in self.types:
+                c = 0
+                for i in storage.all().values():
+                    if type(i) == globals()[lines]:
+                        c = c + 1
+                print(c)
+            else:
+                print("** class doesn't exist **")
+        else:
+            print("** class name missing **")
 
 
 if __name__ == '__main__':
