@@ -3,13 +3,14 @@
 Console module for the command interpreter.
 """
 from models.base_model import BaseModel
+from models.user import User
 import cmd
 
 
 class HBNBCommand(cmd.Cmd):
     """command line intepretrer for airbnb"""
     prompt = "(hbnb) "
-    types = ["BaseModel"]
+    types = ["BaseModel", "User"]
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
@@ -81,12 +82,14 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, lines):
         """this method lists all the str represenation"""
         from models import storage
+        list_rep = []
         if lines == "" or not lines:
             print([str(v) for k, v in storage.all().items()])
         else:
             if lines in self.types:
-                (print([str(v) for k, v in storage.all().items()
-                 if type(v).__name__ == lines]))
+                (list_rep.extend(str(i) for i in storage.all().values()
+                 if isinstance(i, globals()[lines])))
+                print(list_rep)
             else:
                 print("** class doesn't exist **")
 
