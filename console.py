@@ -25,6 +25,14 @@ class HBNBCommand(cmd.Cmd):
         "Review"
     ]
 
+    def precmd(self, line):
+        """runs befor command is ex"""
+        if line.endswith(".all()"):
+            classn = line.split('.')[0]
+            return f'all {classn}'
+        else:
+            return line
+
     def do_quit(self, arg):
         """Quit command to exit the program"""
         return True
