@@ -27,6 +27,7 @@ class HBNBCommand(cmd.Cmd):
 
     def precmd(self, line):
         """runs befor command is ex"""
+        p = re.compile(r'\.show\((\w{8}-\w{4}-\w{4}-\w{4}-\w{12})\)$')
         if line.endswith(".all()"):
             classn = line.split('.')[0]
             return f'all {classn}'
