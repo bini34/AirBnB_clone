@@ -91,11 +91,9 @@ class HBNBCommand(cmd.Cmd):
         elif lines not in self.types:
             print("** class doesn't exist **")
         else:
-            for i in storage.all().values():
-                if isinstance(i, lines.strip("'\\\"")):
-                    list_rep.append(str(i))
+            (list_rep.extend(str(i) for i in storage.all().values()
+             if isinstance(i, globals()[lines])))
             print(list_rep)
-
 
     def do_update(self, lines):
         """this method updates instance"""
